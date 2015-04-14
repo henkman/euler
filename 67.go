@@ -53,7 +53,6 @@ func main() {
 
 	var l uint64
 	for _, n := range triangle[len(triangle)-1] {
-		fmt.Println(n)
 		if n > l {
 			l = n
 		}

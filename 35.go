@@ -45,7 +45,6 @@ func main() {
 	primes = sieve.Sieve(N)
 	for i = 1; i < N; i++ {
 		if isCircularPrime(i) {
-			fmt.Println(i)
 			s++
 		}
 	}

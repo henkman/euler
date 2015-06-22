@@ -3,6 +3,7 @@ package primegen
 import (
 	"fmt"
 	"io"
+	"math"
 )
 
 type Generator struct {
@@ -21,10 +22,18 @@ func New(capacity uint64) *Generator {
 
 func (p *Generator) Next() uint64 {
 	lp := p.Last()
+	m := uint64(math.Sqrt(float64(lp)))
+	egp := p.Primes
+	for i := 0; i < p.Len(); i++ {
+		if p.Primes[i] > m {
+			egp = p.Primes[:i]
+			break
+		}
+	}
 outer:
-	for i := lp + 2; ; i++ {
-		for e := 0; e < p.Len(); e++ {
-			if i%p.Primes[e] == 0 {
+	for i := lp + 2; ; i += 2 {
+		for _, p := range egp {
+			if i%p == 0 {
 				continue outer
 			}
 		}

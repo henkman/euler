@@ -8,10 +8,11 @@ func Sieve(n uint64) []bool {
 	var i uint64
 	s := uint64(math.Sqrt(float64(n)))
 	p := make([]bool, n)
-	for i = 2; i < n; i++ {
+	p[2] = true
+	for i = 3; i < n; i += 2 {
 		p[i] = true
 	}
-	for i = 2; i <= s; i++ {
+	for i = 3; i <= s; i += 2 {
 		if !p[i] {
 			continue
 		}

@@ -1,16 +1,16 @@
 package main
 
 import (
-	"euler/sieve"
 	"fmt"
+	"github.com/papplampe/euler/sieve"
 )
 
 func main() {
 	const N = 2000000
-	p := sieve.Sieve(N)
+	sr := sieve.Sieve(N)
 	var i, s uint64
 	for i = 0; i < N; i++ {
-		if p[i] {
+		if sr.IsPrime(i) {
 			s += i
 		}
 	}

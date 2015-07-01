@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	primes []bool
+	sr sieve.SieveResults
 )
 
 const (
@@ -23,7 +23,7 @@ func rotateBytes(s []byte) {
 }
 
 func isCircularPrime(n uint64) bool {
-	if !primes[n] {
+	if !sr.IsPrime(n) {
 		return false
 	}
 	t := []byte(fmt.Sprint(n))
@@ -33,7 +33,7 @@ func isCircularPrime(n uint64) bool {
 	for i := 0; i < len(t); i++ {
 		rotateBytes(t)
 		x, _ := strconv.Atoi(string(t))
-		if !primes[x] {
+		if !sr.IsPrime(uint64(x)) {
 			return false
 		}
 	}
@@ -42,7 +42,7 @@ func isCircularPrime(n uint64) bool {
 
 func main() {
 	var i, s uint64
-	primes = sieve.Sieve(N)
+	sr = sieve.Sieve(N)
 	for i = 1; i < N; i++ {
 		if isCircularPrime(i) {
 			s++

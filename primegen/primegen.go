@@ -39,7 +39,19 @@ outer:
 		}
 		return i
 	}
-	panic("whoops")
+}
+
+func (p *Generator) IsPrime(x uint64) bool {
+	if (x != 2 && x%2 == 0) || (x != 3 && x%3 == 0) {
+		return false
+	}
+	p.GenerateUpTo(x)
+	for _, p := range p.Primes {
+		if p == x {
+			return true
+		}
+	}
+	return false
 }
 
 func (p *Generator) Add(x uint64) {
@@ -64,8 +76,10 @@ func (p *Generator) GenerateUpTo(n uint64) {
 	}
 }
 
-func (p *Generator) GenerateNext() {
-	p.Add(p.Next())
+func (p *Generator) GenerateNext() uint64 {
+	n := p.Next()
+	p.Add(n)
+	return n
 }
 
 func (p *Generator) Print(out io.Writer) {

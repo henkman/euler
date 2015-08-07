@@ -33,7 +33,7 @@ func main() {
 	sum = 23 + 37 + 53 + 73
 	n := 4
 	for n < 11 {
-		p := pg.GenerateNext()
+		p := pg.NextAdd()
 		if isTruncatablePrime(p) {
 			sum += p
 			n++

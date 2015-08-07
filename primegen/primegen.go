@@ -67,16 +67,14 @@ func (p *Generator) Len() int {
 }
 
 func (p *Generator) GenerateUpTo(n uint64) {
-	for {
-		x := p.Next()
-		if x > n {
-			break
-		}
+	x := p.Next()
+	for x < n {
 		p.Add(x)
+		x = p.Next()
 	}
 }
 
-func (p *Generator) GenerateNext() uint64 {
+func (p *Generator) NextAdd() uint64 {
 	n := p.Next()
 	p.Add(n)
 	return n

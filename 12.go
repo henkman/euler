@@ -1,8 +1,8 @@
 package main
 
 import (
-	"euler/primegen"
 	"fmt"
+	"github.com/papplampe/euler/primegen"
 	"math"
 )
 
